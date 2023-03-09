@@ -7,6 +7,7 @@ const mongoose = require("mongoose");
 // ROUTES
 const users = require("./routes/users");
 const auth = require("./routes/auth");
+const list = require("./routes/list");
 
 const db = process.env.DB;
 const app = express();
@@ -26,10 +27,7 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use("", users);
 app.use("", auth);
-
-app.get("/", (req, res) => {
-    res.send("Test");
-})
+app.use("", list);
 
 app.listen(port, () => {
     console.log(`Running on port ${port}`);

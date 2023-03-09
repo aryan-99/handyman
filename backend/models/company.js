@@ -1,18 +1,14 @@
 const mongoose = require("mongoose");
 
-const User = mongoose.model(
-    "User",
+const Company = mongoose.model(
+    "Company",
     new mongoose.Schema({
         username: {
             type: String,
             required: true,
             unique: true,
         },
-        firstName: {
-            type: String,
-            required: true,
-        },
-        lastName: {
+        companyName: {
             type: String,
             required: true,
         },
@@ -21,6 +17,14 @@ const User = mongoose.model(
             required: true,
         },
         password: {
+            type: String,
+            required: true,
+        },
+        phone: {
+            type: Number,
+            required: true,
+        },
+        category: {
             type: String,
             required: true,
         },
@@ -46,17 +50,6 @@ const User = mongoose.model(
             type: String,
             required: true,
         },
-        // location: {
-        //     type: {
-        //         type: String,
-        //         enum: ["Point"],
-        //         required: true,
-        //     },
-        //     coordinates: {
-        //         type: [Number],
-        //         required: true,
-        //     }
-        // },
         createdAt: {
             type: Date,
             default: Date.now,
@@ -68,4 +61,4 @@ const User = mongoose.model(
     })
 )
 
-exports.User = User;
+exports.Company = Company;
