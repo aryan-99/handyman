@@ -42,4 +42,4 @@ jspm_packages
 public/
 
 # ENV file(s)
-.env
+.env*
