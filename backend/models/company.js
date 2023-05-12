@@ -11,6 +11,7 @@ const Company = mongoose.model(
         companyName: {
             type: String,
             required: true,
+            unique: true,
         },
         email: {
             type: String,
@@ -25,6 +26,10 @@ const Company = mongoose.model(
             required: true,
         },
         category: {
+            type: String,
+            required: true,
+        },
+        about: {
             type: String,
             required: true,
         },
@@ -54,6 +59,10 @@ const Company = mongoose.model(
             type: Date,
             default: Date.now,
         },
+        bids: [{
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Bid"
+        }],
         updatedAt: {
             type: Date,
             default: Date.now,

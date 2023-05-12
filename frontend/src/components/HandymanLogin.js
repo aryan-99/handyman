@@ -1,9 +1,9 @@
 import React from "react";
 import Navbar from "./Navbar";
-import { Navigate, Link } from "react-router-dom";
 import axios from "axios";
+import { Link, Navigate } from "react-router-dom";
 
-class Login extends React.Component {
+class HandymanLogin extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -17,10 +17,10 @@ class Login extends React.Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        axios.post("http://localhost:8082/login", this.state).then((res) => {
-            localStorage.setItem("username", res.data.username);
+        axios.post("http://localhost:8082/handyman-login", this.state).then((res) => {
+            localStorage.setItem("company", res.data.company);
             localStorage.setItem("token", res.data.token);
-            console.log("Logged in as ", localStorage.getItem("username"));
+            console.log("Logged in as ", localStorage.getItem("company"));
             this.setState({redirect: "/"});
         }).catch((error) => {
             this.setState({msg: "Error logging in"});
@@ -29,7 +29,7 @@ class Login extends React.Component {
 
     render() {
         return (
-            <div className="login text-center">
+            <div className="handyman-login text-center">
                 {this.state.redirect ? <Navigate push to={{pathname: this.state.redirect, state: {msg: this.state.msg}}}/> : null}
                 <Navbar />
                 <p className={this.state.msg ? "msg" : "hidden"}>{this.state.msg}</p>
@@ -47,11 +47,11 @@ class Login extends React.Component {
                         </div>
                     </div>
                 </form>
-                <p>Don't have an account? Click <Link to="/register">here</Link> to register</p>
-                <p>Returning handyman? Click <Link to="/handyman-login">here</Link> to go to the handyman login</p>
+                <p>Want to register as a handyman? Contact us now!</p>
+                <p>Looking for handymen? Click <Link to="/login">here</Link> to go to the customer login</p>
             </div>
         );
     }
 }
 
-export default Login;
+export default HandymanLogin;

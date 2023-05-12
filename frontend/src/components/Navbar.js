@@ -6,6 +6,7 @@ class Navbar extends React.Component {
         super(props);
         this.state = {
             username: localStorage.getItem("username"),
+            company: localStorage.getItem("company"),
         };
     }
     render() {
@@ -18,9 +19,14 @@ class Navbar extends React.Component {
                     </button>
                     <div className="collapse navbar-collapse">
                         <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                            <li className="nav-item"><Link className="nav-link active" aria-current="page" to="/">Home</Link></li>
-                            <li className="nav-item">{this.state.username ? <Link className="nav-link active" to="/profile">Profile</Link> : null}</li>
-                            <li className="nav-item">{this.state.username ? <Link className="nav-link active" to="/logout">Logout</Link> : <Link className="nav-link active" to="/login">Login</Link>}</li>
+                            {!this.state.company ? <li className="nav-item"><Link className="nav-link active" aria-current="page" to="/">Home</Link></li> : null}
+                            <li className="nav-item">{this.state.username || this.state.company ? <Link className="nav-link active" to="/dashboard">Dashboard</Link> : null}</li>
+                            {this.state.company ? <li className="nav-item"><Link className="nav-link active" aria-current="page" to="/marketplace">Marketplace</Link></li> : null}
+                            {/* <li className="nav-item">{this.state.username ? <Link className="nav-link active" to="/profile">Profile</Link> : null}</li> */}
+                            {this.state.username ? <li className="nav-item"><Link className="nav-link active" aria-current="page" to="/create-job">Create Job</Link></li> : null }
+                            {this.state.username || this.state.company ? <li className="nav-item"><Link className="nav-link active" to="/inbox">Inbox</Link></li> : null}
+                            {/* <li className="nav-item"><Link className="nav-link active" aria-current="page" to="/about">About</Link></li> */}
+                            <li className="nav-item">{this.state.username || this.state.company ? <Link className="nav-link active" to="/logout">Logout</Link> : <Link className="nav-link active" to="/login">Login</Link>}</li>
                         </ul>
                     </div>
                 </div>

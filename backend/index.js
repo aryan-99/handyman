@@ -8,6 +8,8 @@ const mongoose = require("mongoose");
 const users = require("./routes/users");
 const auth = require("./routes/auth");
 const list = require("./routes/list");
+const workorder = require("./routes/workorder");
+const jobs = require("./routes/jobs");
 
 const db = process.env.DB;
 const app = express();
@@ -28,6 +30,8 @@ app.use(bodyParser.json());
 app.use("", users);
 app.use("", auth);
 app.use("", list);
+app.use("", workorder);
+app.use("", jobs);
 
 app.listen(port, () => {
     console.log(`Running on port ${port}`);
